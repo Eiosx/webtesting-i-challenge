@@ -14,7 +14,14 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return { ...item };
+  let enhancementLevel = item.enhancement;
+  let reducedDurability = item.durability;
+
+  (enhancementLevel < 15) ? reducedDurability -= 5 : null;
+  (enhancementLevel > 15) ? reducedDurability -= 10 : null;
+  (enhancementLevel > 16) ? enhancementLevel -= 1 : null;
+
+  return { ...item, enhancement: enhancementLevel, durability: reducedDurability };
 }
 
 function repair(item) {
